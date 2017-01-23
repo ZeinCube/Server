@@ -20,9 +20,18 @@ public class Server extends Thread {
     static private Intellect intellect = new Intellect();
     static Map<Integer , Connection> connectionMap = new HashMap<>();
     static List<ServiceServer> servers = new ArrayList<>();
+    static long connections;
 
+
+    //initiates variables
     public static void initiate(){
         intellect.start();
+        connections = 0;
+    }
+    //using while closing or interrupting server
+    public static void STOP() throws IOException {
+        serverSocket.close();
+        clientsocket.close();
     }
 
     @Override
@@ -32,17 +41,17 @@ public class Server extends Thread {
             serverSocket = new ServerSocket(2905,0, ADDRESS);
             console.log("Server started on " + ADDRESS + "\nVersion is : " + VERSION, "m");
             initiate();
+
             while (!interrupted()){
 
             }
 
         } catch (IOException e) {
             console.log(""+e, "exc");
-            interrupt();
             try {
-                serverSocket.close();
-                clientsocket.close();
+                STOP();
             } catch (IOException ignored) {}
+            interrupt();
         }
     }
 }

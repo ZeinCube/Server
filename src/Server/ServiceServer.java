@@ -20,7 +20,7 @@ public class ServiceServer extends ConsoledThread {
     private Connection con;
 
     public ServiceServer(int port) {
-        console.setName("ServiceServer #" + );
+        console.setName("ServiceServer #" + Server.servers.size());
         try {
             serverSocket = new ServerSocket(port , 0 , Server.ADDRESS);
             console.log("New ServiceServer started" , "m");

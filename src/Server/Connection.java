@@ -1,22 +1,22 @@
 package Server;
 
 import Console.Console;
-import Console.ConsoledThread;
 
 import java.net.Socket;
 
 public class Connection implements Runnable {
-    public int number;
+
+    public int id;
     public Socket client;
-    public Console console;
+    public Console console = new Console();
 
     public Connection(Socket client , int number){
         this.client = client;
-        this.number = number;
+        this.id = number;
     }
 
     @Override
     public void run() {
-        console.setName("Connection #" + number);
+        console.setName("Connection #" + id);
     }
 }
