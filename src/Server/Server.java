@@ -34,6 +34,10 @@ public class Server extends Thread {
         clientsocket.close();
     }
 
+    public static void warmUp(){
+
+    }
+
     @Override
     public void run() {
         try {
