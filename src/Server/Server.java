@@ -27,6 +27,7 @@ public class Server extends Thread {
     public static void initiate(){
         intellect.start();
         connections = 0;
+        Tester.test();
     }
     //using while closing or interrupting server
     public static void STOP() throws IOException {
@@ -43,7 +44,7 @@ public class Server extends Thread {
         try {
 
             serverSocket = new ServerSocket(2905,0, ADDRESS);
-            console.log("Server started on " + ADDRESS + "\nVersion is : " + VERSION, "m");
+            console.log("Server started on " + ADDRESS + "\nVersion is : " + VERSION +'\n', "m");
             initiate();
 
             while (!interrupted()){

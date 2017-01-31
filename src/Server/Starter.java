@@ -11,7 +11,7 @@ import static Server.Server.console;
 public class Starter {
     static Server server = new Server();
 
-    void setAddress() {
+    static void setAddress() {
         try {
             List<NetworkInterface> interfaces = Collections.list(NetworkInterface.getNetworkInterfaces());
             for(NetworkInterface intf : interfaces) {
@@ -28,7 +28,7 @@ public class Starter {
         }
     }
 
-    void setAddress(String address) {
+    static  void setAddress(String address) {
         try {
             Server.ADDRESS = InetAddress.getByName(address);
         } catch (UnknownHostException e) {
@@ -38,6 +38,7 @@ public class Starter {
 
 
     public static void main(String[] args) {
+        setAddress();
         server.start();
     }
 }
