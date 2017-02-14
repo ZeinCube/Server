@@ -11,9 +11,9 @@ import java.util.concurrent.Executors;
 public class Tester {
 
     public static void test(){
+
         final Integer[] connections = {0};
         ExecutorService service = Executors.newFixedThreadPool(2);
-
         service.submit(() -> {
 
             Map<Integer , Connection> connectionMap = new HashMap<>();
@@ -34,7 +34,6 @@ public class Tester {
         });
 
         service.submit(()->{
-
             Socket socket;
             try {
                 while (true) {

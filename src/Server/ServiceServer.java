@@ -17,7 +17,6 @@ public class ServiceServer extends ConsoledThread {
     ServerSocket serverSocket;
     int connections;
     Map<Integer,Connection> connectionList = new HashMap<>();
-    private Connection con;
 
     public ServiceServer(int port) {
         console.setName("ServiceServer #" + Server.servers.size());
@@ -25,17 +24,21 @@ public class ServiceServer extends ConsoledThread {
             serverSocket = new ServerSocket(port , 0 , Server.ADDRESS);
             console.log("New ServiceServer started" , "m");
         } catch (IOException e) {
-            console.log("Exception in setting serversocket {" + e + '}', "exc");
+            console.log("Exception in setting serverSocket {" + e + '}', "exc");
             interrupt();
         }
         start();
     }
 
+    public void oneMoreConnection (){
+        connections++;
+    }
+
     public void handleConnection(Socket client){
-        con = new Connection(client,connections);
+        Connection con = new Connection(client, connections);
         executor.submit(con);
         connectionList.put(connections, con);
-        connections++;
+        oneMoreConnection();
     }
 
     @Override

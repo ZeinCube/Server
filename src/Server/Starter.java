@@ -9,6 +9,7 @@ import java.util.List;
 import static Server.Server.console;
 
 public class Starter {
+
     static Server server = new Server();
 
     static void setAddress() {

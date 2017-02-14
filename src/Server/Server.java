@@ -42,7 +42,6 @@ public class Server extends Thread {
     @Override
     public void run() {
         try {
-
             serverSocket = new ServerSocket(2905,0, ADDRESS);
             console.log("Server started on " + ADDRESS + "\nVersion is : " + VERSION +'\n', "m");
             initiate();
