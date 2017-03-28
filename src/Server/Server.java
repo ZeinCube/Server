@@ -18,7 +18,6 @@ public class Server extends Thread {
     static private final String VERSION = "1.0.0";
     static Integer maxconections;
     static private Intellect intellect = new Intellect();
-    static Map<Integer , Connection> connectionMap = new HashMap<>();
     static List<ServiceServer> servers = new ArrayList<>();
     static long connections;
 
@@ -29,8 +28,10 @@ public class Server extends Thread {
         connections = 0;
         Tester.test();
     }
-    //using while closing or interrupting server
+
+    //using in case of closing or interrupting server
     public static void STOP() throws IOException {
+
         serverSocket.close();
         clientsocket.close();
     }

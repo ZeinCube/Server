@@ -4,10 +4,7 @@ import Console.ConsoledThread;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -15,9 +12,8 @@ public class ServiceServer extends ConsoledThread {
 
     ExecutorService executor = Executors.newFixedThreadPool(Server.maxconections);
     ServerSocket serverSocket;
-    int connections;
-    Map<Integer,Connection> connectionList = new HashMap<>();
-
+    long connections;
+    LinkedList<Connection> connectionList = new LinkedList<>();
     public ServiceServer(int port) {
         console.setName("ServiceServer #" + Server.servers.size());
         try {
@@ -35,10 +31,17 @@ public class ServiceServer extends ConsoledThread {
     }
 
     public void handleConnection(Socket client){
-        Connection con = new Connection(client, connections);
+        Connection con = new Connection(client, (int) connections);
         executor.submit(con);
-        connectionList.put(connections, con);
+        connectionList.add(con);
         oneMoreConnection();
+    }
+
+    public void CLOSE(){
+        interrupt();
+        for (Connection connection : connectionList){
+            connection.interrupt();
+        }
     }
 
     @Override
