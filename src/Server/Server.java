@@ -5,9 +5,7 @@ import Logic.Intellect;
 import java.io.IOException;
 import java.net.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Server extends Thread {
 
@@ -36,9 +34,9 @@ public class Server extends Thread {
         clientsocket.close();
     }
 
-    public static void warmUp(){
-
-    }
+//    public static void warmUp(){ will be realised in future
+//
+//    }
 
     @Override
     public void run() {

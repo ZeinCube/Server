@@ -11,9 +11,9 @@ public class Connection implements Runnable {
     public Console console = new Console();
     public boolean interrupted;
 
-    public Connection(Socket client , int number){
+    public Connection(Socket client , int id){
         this.client = client;
-        this.id = number;
+        this.id = id;
     }
 
     public void interrupt(){

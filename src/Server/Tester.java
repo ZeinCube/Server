@@ -2,7 +2,6 @@ package Server;
 
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
@@ -11,8 +10,7 @@ import java.util.concurrent.Executors;
 public class Tester {
 
     public static void test(){
-
-        final Integer[] connections = {0};
+        Integer connections[] = {0};
         ExecutorService service = Executors.newFixedThreadPool(2);
         service.submit(() -> {
 
@@ -27,7 +25,6 @@ public class Tester {
                     connectionMap.put(connections[0], new Connection(client , connections[0]));
                     connections[0]++;
                 }
-
             } catch (Exception e) {
                 System.err.println("Exception " + e);
             }

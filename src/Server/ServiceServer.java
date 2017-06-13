@@ -14,6 +14,7 @@ public class ServiceServer extends ConsoledThread {
     ServerSocket serverSocket;
     long connections;
     LinkedList<Connection> connectionList = new LinkedList<>();
+
     public ServiceServer(int port) {
         console.setName("ServiceServer #" + Server.servers.size());
         try {
