@@ -37,9 +37,14 @@ public class Tester {
                     socket = new Socket(Server.ADDRESS, 2000);
                 }
             }catch (Exception e){
+                if(connections[0]%2 == 1){
+                    connections[0]=connections[0]-1;
+                }
                 Server.maxconections = connections[0]-1000;
                 System.out.println("Connections accepted : " + connections[0] + '\n' + "Max connections set :" + (connections[0]-1000));
+                Starter.server.start();
             }
         });
+
     }
 }

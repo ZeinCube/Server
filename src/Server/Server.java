@@ -16,27 +16,35 @@ public class Server extends Thread {
     static private final String VERSION = "1.0.0";
     static Integer maxconections;
     static private Intellect intellect = new Intellect();
-    static List<ServiceServer> servers = new ArrayList<>();
+    public static List<ServiceServer> servers = new ArrayList<>();
     static long connections;
+    static int nextPort = 3000;
 
 
     //initiates variables
     public static void initiate(){
-        intellect.start();
+        intellect.initiate();
         connections = 0;
-        Tester.test();
     }
 
     //using in case of closing or interrupting server
     public static void STOP() throws IOException {
-
         serverSocket.close();
         clientsocket.close();
     }
 
-//    public static void warmUp(){ will be realised in future
-//
-//    }
+    public static void warmUp(){
+        servers.add(new ServiceServer(nextPort));
+        nextPort++;
+    }
+
+    public static void oneMoreServer(int port, int maxconections){
+
+    }
+
+    public static void handleInputConnection(Socket Input){
+        intellect.handle(Input);
+    }
 
     @Override
     public void run() {
@@ -46,7 +54,7 @@ public class Server extends Thread {
             initiate();
 
             while (!interrupted()){
-
+                handleInputConnection(serverSocket.accept());
             }
 
         } catch (IOException e) {

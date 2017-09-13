@@ -14,6 +14,7 @@ public class ServiceServer extends ConsoledThread {
     ServerSocket serverSocket;
     long connections;
     LinkedList<Connection> connectionList = new LinkedList<>();
+    int FunCap;
 
     public ServiceServer(int port) {
         console.setName("ServiceServer #" + Server.servers.size());
@@ -29,6 +30,7 @@ public class ServiceServer extends ConsoledThread {
 
     public void oneMoreConnection (){
         connections++;
+
     }
 
     public void handleConnection(Socket client){
